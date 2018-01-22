@@ -5,9 +5,8 @@ const bodyParser = require('body-parser');
 const errorHandler = require('errorhandler');
 const methodOverride = require('method-override');
 const path = require('path');
-const ip = require('ip');
 
-const hostname = process.env.HOSTNAME || `${ip.address()}`;
+const hostname = process.env.HOSTNAME || '0.0.0.0';
 const port = parseInt(process.env.PORT, 10) || 8090;
 const distDir = process.argv[2] || __dirname + '/dist';
 const app = express();
@@ -28,5 +27,5 @@ app.use(errorHandler({
   showStack: true,
 }));
 
-console.log('Simple static server showing %s listening at http://%s:%s', distDir, hostname, port);
+console.log('Simple static server runing %s listening at http://%s:%s', distDir, hostname, port);
 app.listen(port, hostname);
